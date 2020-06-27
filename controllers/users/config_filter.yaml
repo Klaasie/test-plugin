@@ -6,10 +6,48 @@ scopes:
 
     roles:
         label: Role
+        type: group
         scope: applyRoleFilter
         modelClass: October\Test\Models\Role
-        nameFrom: name
+        options: getRoles
     idRange:
         label: ID Range
         type: numberrange
         conditions: id >= ':min' and id <= ':max'
+
+
+    is_morpheus:
+        label: is MORPHEUS?
+        type: switch
+        default: 0
+        conditions:
+            - username != "MORPHEUS"
+            - username = "MORPHEUS"
+
+    filter_morpheus:
+        label: Filter MORPHEUS
+        type: checkbox
+        default: 0
+        conditions: username = "MORPHEUS"
+
+    created_at:
+        label: Created date specific
+        type: date
+        conditions: created_at >= ':filtered'
+
+    created_at_range:
+        label: Created date range
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+
+    id:
+        label: ID must be higher than
+        type: number
+        default: 0
+        conditions: id > ':filtered'
+
+    username:
+        label: Username
+        type: text
+        conditions: username = :value
+        size: 4

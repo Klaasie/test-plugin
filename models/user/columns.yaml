@@ -16,3 +16,8 @@ columns:
         relation: roles_count
         valueFrom: count
         default: 0
+
+    created_at:
+        label: Created at
+        type: datetime
+        format: Y-m-d H:i:s

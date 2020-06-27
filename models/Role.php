@@ -34,4 +34,8 @@ class Role extends Model
         'photos' => ['System\Models\File'],
     ];
 
+    public function getRoles(): array
+    {
+        return self::query()->pluck('name', 'id')->toArray();
+    }
 }
